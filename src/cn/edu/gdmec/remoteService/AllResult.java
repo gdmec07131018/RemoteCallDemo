@@ -1,0 +1,54 @@
+package cn.edu.gdmec.remoteService;
+
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class AllResult implements Parcelable {
+	public long AddResult;
+	public long SubResult;
+	public long MulResult;
+	public double DivResult;
+
+	public AllResult(long addResult,long subResult,long mulResult, double divResult){
+		super();
+		AddResult=addResult;
+		SubResult=subResult;
+		MulResult = mulResult;
+		DivResult = divResult;
+	}
+	
+	public AllResult(Parcel parcel){
+		AddResult = parcel.readLong();
+		SubResult = parcel.readLong();
+		MulResult = parcel.readLong();
+		DivResult =parcel.readDouble();
+	}
+	@Override
+	public int describeContents() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeLong(AddResult);
+		dest.writeLong(SubResult);
+		dest.writeLong(MulResult);
+		dest.writeDouble(DivResult);
+	}
+	public static final Parcelable.Creator<AllResult> CREATOR = 
+			new Parcelable.Creator<AllResult>() {
+				
+				@Override
+				public AllResult[] newArray(int size) {
+					// TODO Auto-generated method stub
+					return new AllResult[size];
+				}
+				
+				@Override
+				public AllResult createFromParcel(Parcel source) {
+					// TODO Auto-generated method stub
+					return new AllResult(source);
+				}
+			};
+}
